@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>RESVI — Retail Products Store · Krishnagiri | Amazon Dealer</title>
+<meta name="description" content="RESVI (ரெஸ்வி) — Retail Products Store in Krishnagiri. Toys & games, home & kitchen accessories and more. Amazon Dealer. Browse and enquire on WhatsApp." />
+<link rel="icon" href="favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Luckiest+Guy&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --navy:#16296B; --navy-2:#21409B; --navy-deep:#0B1640;
+    --gold:#FBB315; --gold-deep:#E8920A; --red:#E12018;
+    --cream:#FFF7EC; --surface:#FFFFFF;
+    --ink:#15203F; --line:#ECE3D2; --muted:#6E6A7A;
+    --wa:#25D366; --wa-deep:#1EBE5A;
+    --radius:18px;
+    --shadow:0 1px 2px rgba(11,22,64,.05), 0 10px 26px rgba(11,22,64,.07);
+    --shadow-lift:0 16px 40px rgba(22,41,107,.18);
+    --maxw:1200px;
+    --poster:'Luckiest Guy', system-ui, sans-serif;
+    --display:'Baloo 2', system-ui, sans-serif;
+    --body:'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:var(--body);color:var(--ink);background:var(--cream);line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  img{display:block;max-width:100%}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+
+  .btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--body);font-weight:700;font-size:14px;
+       padding:12px 20px;border-radius:999px;border:none;cursor:pointer;
+       transition:transform .15s ease, box-shadow .15s ease, background .15s ease, color .15s ease}
+  .btn:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .btn-lg{padding:15px 26px;font-size:15.5px}
+  .btn-wa{background:var(--wa);color:#013d1a}
+  .btn-wa:hover{background:var(--wa-deep);color:#fff;transform:translateY(-2px)}
+  .btn-gold{background:var(--gold);color:#3a2400;position:relative;overflow:hidden}
+  .btn-gold:hover{background:var(--gold-deep);transform:translateY(-2px)}
+  .btn-gold::after{content:"";position:absolute;top:0;left:-130%;width:55%;height:100%;
+    background:linear-gradient(120deg,transparent,rgba(255,255,255,.6),transparent);transform:skewX(-20deg)}
+  .btn-gold:hover::after{animation:sheen .85s ease}
+  @keyframes sheen{to{left:135%}}
+  .btn-navy{background:var(--navy);color:#fff}
+  .btn-navy:hover{background:var(--navy-2);transform:translateY(-2px)}
+
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  /* header */
+  .site-head{position:sticky;top:0;z-index:40;background:rgba(255,247,236,.88);
+             backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+  .head-row{display:flex;align-items:center;gap:16px;height:72px}
+  .brand-logo{height:50px;width:auto;transition:transform .2s ease}
+  .brand-logo:hover{transform:rotate(-3deg) scale(1.04)}
+  .head-search{flex:1;max-width:380px;position:relative;display:none}
+  .head-search input{width:100%;height:42px;border:1px solid var(--line);border-radius:999px;padding:0 16px 0 42px;
+                     font-family:var(--body);font-size:14px;background:var(--surface);color:var(--ink)}
+  .head-search input:focus{outline:2px solid var(--navy);outline-offset:1px;border-color:transparent}
+  .head-search svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .head-cta{margin-left:auto;display:flex;align-items:center;gap:10px}
+  .amz{display:inline-flex;align-items:center;gap:7px;background:var(--navy);color:#fff;font-weight:800;
+       font-size:11.5px;letter-spacing:.05em;padding:8px 13px;border-radius:9px;text-transform:uppercase}
+  .amz .smile{color:var(--gold);font-size:15px;line-height:0}
+
+  /* hero */
+  .hero{position:relative;overflow:hidden;color:#fff;
+        background:linear-gradient(125deg,var(--navy-deep) 0%, var(--navy) 52%, var(--navy-2) 100%)}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(38% 60% at 90% 6%, rgba(251,179,21,.30), transparent 60%),
+               radial-gradient(40% 55% at 4% 96%, rgba(225,32,24,.30), transparent 60%)}
+  .hero .stars{position:absolute;inset:0;pointer-events:none}
+  .hero .stars span{position:absolute;color:var(--gold);opacity:.5;animation:twinkle 3s ease-in-out infinite}
+  .hero .stars span:nth-child(1){left:54%;top:16%;font-size:20px;animation-delay:0s}
+  .hero .stars span:nth-child(2){left:72%;top:40%;font-size:13px;animation-delay:.6s;color:#fff;opacity:.4}
+  .hero .stars span:nth-child(3){left:60%;top:64%;font-size:16px;animation-delay:1.2s}
+  .hero .stars span:nth-child(4){left:84%;top:22%;font-size:11px;animation-delay:1.8s;color:#fff;opacity:.35}
+  @keyframes twinkle{0%,100%{opacity:.2;transform:scale(.9)}50%{opacity:.75;transform:scale(1.15)}}
+  .hero .wrap{position:relative;display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center;padding:52px 22px 58px}
+  .hero-logo{max-width:340px;margin-bottom:20px;filter:drop-shadow(0 10px 22px rgba(0,0,0,.35));animation:float 4.5s ease-in-out infinite}
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+  .hero h1{font-family:var(--poster);font-weight:400;line-height:1.05;font-size:clamp(30px,5.4vw,52px);letter-spacing:.01em}
+  .hero h1 .pop{color:var(--gold)}
+  .hero .ribbon{display:inline-block;background:var(--gold);color:var(--navy-deep);font-family:var(--display);font-weight:800;
+    font-size:clamp(14px,2.2vw,19px);letter-spacing:.02em;padding:7px 22px;margin-top:16px;text-transform:uppercase;
+    clip-path:polygon(4% 0,100% 0,96% 100%,0 100%);box-shadow:0 6px 16px rgba(0,0,0,.22)}
+  .hero p{margin-top:18px;font-size:clamp(15px,1.9vw,17.5px);color:rgba(255,255,255,.9);max-width:46ch}
+  .hero-actions{margin-top:26px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .hero-note{font-size:13.5px;color:rgba(255,255,255,.88);display:flex;align-items:center;gap:7px}
+  .hero-cats{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+  .hcat{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.20);border-radius:16px;padding:18px;
+        cursor:pointer;transition:transform .15s ease, background .15s ease;text-align:left}
+  .hcat:hover{background:rgba(255,255,255,.18);transform:translateY(-4px)}
+  .hcat .emoji{font-size:30px;display:block;margin-bottom:8px;transition:transform .2s ease}
+  .hcat:hover .emoji{animation:bounce .6s ease}
+  @keyframes bounce{0%,100%{transform:translateY(0)}40%{transform:translateY(-7px)}}
+  .hcat h3{font-family:var(--display);font-weight:700;font-size:18px;color:#fff}
+  .hcat p{font-size:12.5px;color:rgba(255,255,255,.74);margin-top:2px}
+
+  /* trust */
+  .trust{background:var(--surface);border-bottom:1px solid var(--line)}
+  .trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+  .trust-cell{background:var(--surface);padding:18px 16px;display:flex;gap:12px;align-items:flex-start}
+  .trust-cell .ic{flex:none;width:38px;height:38px;border-radius:11px;background:#FFF1D6;color:var(--gold-deep);display:grid;place-items:center}
+  .trust-cell h4{font-size:14.5px;font-weight:800;letter-spacing:-.01em}
+  .trust-cell p{font-size:12.5px;color:var(--muted);margin-top:2px}
+
+  /* catalogue */
+  .catalogue{padding:50px 0 64px;scroll-margin-top:84px}
+  .sec-head{text-align:center;max-width:660px;margin:0 auto}
+  .sec-eyebrow{display:inline-block;font-size:12.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;
+               color:var(--red);background:#FCE2E0;padding:6px 14px;border-radius:999px;margin-bottom:14px}
+  .sec-head h2{font-family:var(--poster);font-weight:400;font-size:clamp(30px,4.6vw,46px);letter-spacing:.01em}
+  .sec-head p{color:var(--muted);font-size:15px;margin-top:10px}
+
+  .toolbar{display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:center;margin:26px 0 10px}
+  .filters{display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+  .chip{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);font-family:var(--body);
+        font-size:13.5px;font-weight:700;padding:9px 17px;border-radius:999px;cursor:pointer;transition:all .15s ease;white-space:nowrap}
+  .chip:hover{border-color:var(--navy);color:var(--navy);transform:translateY(-1px)}
+  .chip[aria-pressed="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .chip:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+  .searchbox{position:relative;width:100%;max-width:340px}
+  .searchbox input{width:100%;height:44px;border:1px solid var(--line);border-radius:999px;padding:0 16px 0 42px;
+                   font-family:var(--body);font-size:14px;background:var(--surface);color:var(--ink)}
+  .searchbox input:focus{outline:2px solid var(--navy);outline-offset:1px;border-color:transparent}
+  .searchbox svg{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--muted)}
+  .count-pill{display:block;text-align:center;font-size:13px;font-weight:700;color:var(--muted);margin:6px 0 22px}
+
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;
+        display:flex;flex-direction:column;box-shadow:var(--shadow);
+        transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease}
+  .card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);border-color:#E7D6B4}
+  .card-media{position:relative;aspect-ratio:1/1;background:#FBF3E4;overflow:hidden}
+  .card-media img{width:100%;height:100%;object-fit:cover;transition:transform .45s ease}
+  .card:hover .card-media img{transform:scale(1.07)}
+  .card-media .ph{width:100%;height:100%;display:grid;place-items:center;background:linear-gradient(135deg,#FFF3DC,#F3E9FB)}
+  .card-media .ph span{font-family:var(--display);font-weight:800;font-size:42px;color:#E3C68A}
+  .card-body{padding:15px 15px 17px;display:flex;flex-direction:column;flex:1}
+  .card-cat{font-size:11px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:var(--navy-2)}
+  .card-body h3{font-size:15px;font-weight:700;letter-spacing:-.01em;margin-top:5px;line-height:1.3}
+  .pricetag{display:flex;align-items:center;gap:10px;margin:13px 0;flex-wrap:wrap}
+  .tag{position:relative;background:var(--navy);color:#fff;border-radius:8px;padding:7px 13px 7px 21px;display:inline-flex;align-items:baseline;gap:8px}
+  .tag::before{content:"";position:absolute;left:8px;top:50%;transform:translateY(-50%);width:7px;height:7px;border-radius:50%;background:var(--surface);box-shadow:inset 0 0 0 1.5px var(--navy)}
+  .tag .now{font-size:17px;font-weight:800}
+  .tag.ask .now{font-size:13.5px;font-weight:700}
+  .card .btn-wa{margin-top:auto;width:100%;justify-content:center}
+
+  /* pagination */
+  .pager{display:flex;justify-content:center;align-items:center;gap:6px;flex-wrap:wrap;margin-top:38px}
+  .pg{min-width:42px;height:42px;padding:0 12px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);
+      font-weight:700;border-radius:11px;cursor:pointer;font-family:var(--body);font-size:14px;
+      display:inline-flex;align-items:center;justify-content:center;transition:all .15s ease}
+  .pg:hover:not(:disabled):not(.ellipsis){border-color:var(--navy);color:var(--navy);transform:translateY(-1px)}
+  .pg[aria-current="true"]{background:var(--navy);color:#fff;border-color:var(--navy)}
+  .pg:disabled{opacity:.4;cursor:default}
+  .pg.ellipsis{border:none;background:transparent;cursor:default;min-width:22px;padding:0}
+
+  .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty h3{font-family:var(--display);font-size:22px;color:var(--ink);margin-bottom:6px}
+
+  /* bulk */
+  .band{padding:8px 0}
+  .bulk{background:linear-gradient(120deg,var(--navy),var(--navy-2));color:#fff;border-radius:26px;padding:46px;
+        display:flex;gap:30px;align-items:center;justify-content:space-between;flex-wrap:wrap;position:relative;overflow:hidden}
+  .bulk::after{content:"★";position:absolute;right:30px;top:14px;font-size:120px;color:rgba(251,179,21,.18);line-height:1;animation:twinkle 4s ease-in-out infinite}
+  .bulk h2{font-family:var(--display);font-weight:800;font-size:clamp(24px,3.6vw,34px);max-width:20ch;position:relative}
+  .bulk p{color:rgba(255,255,255,.88);margin-top:10px;max-width:48ch;position:relative}
+  .bulk .btn{position:relative}
+
+  /* footer */
+  .site-foot{background:var(--navy-deep);color:#fff;padding:52px 0 28px;margin-top:60px}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:34px}
+  .foot-logo{height:54px;width:auto;margin-bottom:14px}
+  .foot-about{color:rgba(255,255,255,.7);font-size:14px;max-width:40ch}
+  .foot-col h5{font-size:12.5px;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:14px;font-weight:800}
+  .foot-col a, .foot-col p{display:block;font-size:14.5px;color:rgba(255,255,255,.85);margin-bottom:10px}
+  .foot-col a:hover{color:var(--gold)}
+  .foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:34px;padding-top:20px;display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:13px;color:rgba(255,255,255,.6)}
+
+  /* fab */
+  .fab{position:fixed;right:20px;bottom:20px;z-index:50;width:58px;height:58px;border-radius:50%;background:var(--wa);
+       color:#fff;display:grid;place-items:center;box-shadow:0 10px 28px rgba(37,211,102,.5);border:none;cursor:pointer;transition:transform .2s ease}
+  .fab:hover{transform:scale(1.08)}
+  .fab:focus-visible{outline:3px solid #fff;outline-offset:3px}
+  .fab .pulse{position:absolute;inset:0;border-radius:50%;border:2px solid var(--wa);animation:pulse 2.2s infinite}
+  @keyframes pulse{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.6);opacity:0}}
+
+  .card{opacity:0;transform:translateY(12px);animation:rise .45s ease forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+
+  @media(min-width:980px){.head-search{display:block}}
+  @media(max-width:980px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .trust-grid{grid-template-columns:repeat(2,1fr)}
+    .hero .wrap{grid-template-columns:1fr;padding:40px 22px 46px}
+    .hero-logo{max-width:280px}
+  }
+  @media(max-width:640px){
+    .grid{grid-template-columns:repeat(2,1fr);gap:13px}
+    .card-body{padding:13px 12px 15px}
+    .card-body h3{font-size:13.5px}
+    .tag .now{font-size:15px}
+    .bulk{padding:30px 22px}
+    .brand-logo{height:42px}
+    .head-cta .label{display:none}
+    .head-cta .amz{display:none}
+  }
+  @media(max-width:380px){.grid{grid-template-columns:1fr}}
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+    .card,.reveal{opacity:1;transform:none}
+  }
+</style>
+</head>
+<body id="top">
+
+<header class="site-head">
+  <div class="wrap head-row">
+    <a href="#top" class="brand"><img class="brand-logo" src="logo.png" alt="RESVI — Retail Products Store" /></a>
+    <div class="head-search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="search" id="searchTop" placeholder="Search products…" aria-label="Search products" />
+    </div>
+    <div class="head-cta">
+      <span class="amz"><span class="smile">⌣</span> Amazon Dealer</span>
+      <a class="btn btn-wa" id="waHead" href="#" target="_blank" rel="noopener">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        <span class="label">WhatsApp</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="stars"><span>★</span><span>★</span><span>★</span><span>★</span></div>
+  <div class="wrap">
+    <div>
+      <img class="hero-logo" src="logo.png" alt="RESVI logo" />
+      <h1>Toys, home &amp; kitchen <span class="pop">all in one store</span></h1>
+      <span class="ribbon">Retail Products Store</span>
+      <p>RESVI (ரெஸ்வி) in Krishnagiri, your trusted Amazon dealer. Browse the shelves below, tap <strong>Enquire</strong>, and chat with us on WhatsApp — we’ll confirm price &amp; availability and arrange delivery.</p>
+      <div class="hero-actions">
+        <a href="#catalogue" class="btn btn-gold btn-lg">Browse the store</a>
+        <a href="#" id="waHero" class="btn btn-wa btn-lg" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          82208 73237
+        </a>
+        <span class="hero-note">⚡ Replies within minutes</span>
+      </div>
+    </div>
+    <div class="hero-cats">
+      <button class="hcat" data-jump="Games & Toys"><span class="emoji">🧸</span><h3>Games &amp; Toys</h3><p>Fun for every age</p></button>
+      <button class="hcat" data-jump="Home Accessories"><span class="emoji">🏠</span><h3>Home Accessories</h3><p>Hooks, organisers &amp; more</p></button>
+      <button class="hcat" data-jump="Kitchen Accessories"><span class="emoji">🍳</span><h3>Kitchen Accessories</h3><p>Tools, gadgets &amp; gear</p></button>
+      <button class="hcat" data-jump="Other Products"><span class="emoji">🎁</span><h3>Other Products</h3><p>Bags, stationery &amp; extras</p></button>
+    </div>
+  </div>
+</section>
+
+<section class="catalogue" id="catalogue">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">Our store contains</span>
+      <h2>Browse the catalogue</h2>
+      <p>Tap any product to enquire on WhatsApp — we’ll confirm the latest price and availability.</p>
+    </div>
+    <div class="toolbar">
+      <div class="filters" id="filters"></div>
+      <div class="searchbox">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+        <input type="search" id="searchMain" placeholder="Search products…" aria-label="Search products" />
+      </div>
+    </div>
+    <span class="count-pill" id="countPill">—</span>
+    <div class="grid" id="grid"></div>
+    <div class="pager" id="pager"></div>
+  </div>
+</section>
+
+<section class="band">
+  <div class="wrap">
+    <div class="bulk reveal">
+      <div>
+        <h2>Looking for something not listed?</h2>
+        <p>As an Amazon dealer we can source almost anything — bulk orders, gifting, schools and events included. Send us your list and we’ll quote you.</p>
+      </div>
+      <a href="#" id="waBulk" class="btn btn-gold btn-lg" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Send your list
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <img class="foot-logo" src="logo.png" alt="RESVI" />
+        <p class="foot-about">A retail products store in Krishnagiri and proud Amazon dealer — toys &amp; games, home &amp; kitchen accessories, and lots more. Browse here and chat with us on WhatsApp.</p>
+      </div>
+      <div class="foot-col">
+        <h5>Visit / Contact</h5>
+        <p id="footAddr">—</p>
+        <a id="footPhone" href="#">—</a>
+        <a id="footEmail" href="#">—</a>
+        <p id="footHours">—</p>
+      </div>
+      <div class="foot-col">
+        <h5>Quick links</h5>
+        <a href="#catalogue">Browse catalogue</a>
+        <a href="#" id="footWa" target="_blank" rel="noopener">Enquire on WhatsApp</a>
+        <a id="footMap" href="#" target="_blank" rel="noopener">Find us on the map</a>
+        <a id="footInsta" href="#" target="_blank" rel="noopener">Instagram</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© <span id="year"></span> RESVI · A unit of RESV Enterprises. All rights reserved.</span>
+      <span>Krishnagiri, Tamil Nadu, India</span>
+    </div>
+  </div>
+</footer>
+
+<a href="#" id="fab" class="fab" aria-label="Chat with RESVI on WhatsApp" target="_blank" rel="noopener">
+  <span class="pulse"></span>
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+</a>
+
+<script>
+const CONFIG = {
+  shopName:"RESVI", whatsapp:"918220873237", phone:"+91 82208 73237", email:"",
+  address:"Krishnagiri, Tamil Nadu 635001", hours:"Mon–Sun · 9:30 AM – 9:00 PM",
+  mapLink:"https://maps.google.com/?q=RESVI+Krishnagiri", instagram:"",
+};
+const PRODUCTS = [
+  {n:"UNO RED BOX",c:"Games & Toys",p:150,i:"images/1.jpg"},
+  {n:"UNO FLIP BOX",c:"Games & Toys",p:150,i:"images/2.jpg"},
+  {n:"UNO H2O BOX",c:"Games & Toys",p:400,i:"images/3.jpg"},
+  {n:"UNO NO MERCY",c:"Games & Toys",p:280,i:"images/4.jpg"},
+  {n:"DOBBLE 5 IN 1 GAME BOX - YELLOW",c:"Games & Toys",p:230,i:"images/5.jpg"},
+  {n:"DOBBLE 5 IN 1 GAME BOX - WHITE",c:"Games & Toys",p:400,i:"images/6.jpg"},
+  {n:"DOBBLE 5 IN 1 GAME BOX - BLUE",c:"Games & Toys",p:400,i:"images/7.jpg"},
+  {n:"TEDDY RING BIG",c:"Games & Toys",p:220,i:"images/8.jpg"},
+  {n:"SCIENCE KIT",c:"Games & Toys",p:700,i:"images/9.jpg"},
+  {n:"DIE CAST CAR",c:"Games & Toys",p:400,i:"images/10.jpg"},
+  {n:"SELF SPELL BOX",c:"Games & Toys",p:1250,i:"images/11.jpg"},
+  {n:"BALANCE DUCK",c:"Games & Toys",p:540,i:"images/12.jpg"},
+  {n:"BABY BAGS",c:"Other Products",p:430,i:"images/13.jpg"},
+  {n:"PUZZLE BLOCK BAG",c:"Games & Toys",p:550,i:"images/14.jpg"},
+  {n:"SPINNING TOP BOX",c:"Games & Toys",p:350,i:"images/15.jpg"},
+  {n:"WRITING BOARD CARD READER",c:"Games & Toys",p:850,i:"images/16.jpg"},
+  {n:"ELECTRONIC KEYBOARD",c:"Games & Toys",p:990,i:"images/17.jpg"},
+  {n:"HUNTING THE STAR",c:"Games & Toys",p:979,i:"images/18.jpg"},
+  {n:"CHESS BOARD MAGNETIC",c:"Games & Toys",p:570,i:"images/19.jpg"},
+  {n:"NUMBER SYMBOL PAD",c:"Games & Toys",p:580,i:"images/20.jpg"},
+  {n:"SHAPES SORTING BOARD",c:"Games & Toys",p:340,i:"images/21.jpg"},
+  {n:"1 TO 9 SYMBOLS PAD",c:"Games & Toys",p:120,i:""},
+  {n:"RC CUTE CRAB",c:"Games & Toys",p:700,i:"images/23.jpg"},
+  {n:"DOMINO MINI TRAIN",c:"Games & Toys",p:950,i:"images/24.jpg"},
+  {n:"GEAR SUVS OFF ROAD VEHICLE",c:"Games & Toys",p:600,i:"images/25.jpg"},
+  {n:"MEMORY CHESS",c:"Games & Toys",p:270,i:"images/26.jpg"},
+  {n:"ELECTRIC SQUID DANCE",c:"Games & Toys",p:880,i:"images/27.jpg"},
+  {n:"DUCKS FERRIS WHEEL TRACK",c:"Games & Toys",p:650,i:"images/28.jpg"},
+  {n:"MELODY RATTLES",c:"Games & Toys",p:350,i:"images/29.jpg"},
+  {n:"BABY LOVELY RATTLE TOYS",c:"Games & Toys",p:380,i:""},
+  {n:"BABY RATTLES SERIES TOYS",c:"Games & Toys",p:480,i:""},
+  {n:"STACKING ANIMALS",c:"Games & Toys",p:340,i:"images/32.jpg"},
+  {n:"COOL LIGHT DRIFTING CAR",c:"Games & Toys",p:1500,i:"images/33.jpg"},
+  {n:"DANCING CACTUS RECHARAGABLE TOYS",c:"Games & Toys",p:370,i:"images/34.jpg"},
+  {n:"SUPER SPORT TOYS",c:"Games & Toys",p:170,i:"images/35.jpg"},
+  {n:"MINI WOODEN BLOCK MASTER",c:"Games & Toys",p:320,i:"images/36.jpg"},
+  {n:"FUN BESDS BAND",c:"Games & Toys",p:300,i:"images/37.jpg"},
+  {n:"ARCHITECT BRICKS TOYS",c:"Games & Toys",p:300,i:"images/38.jpg"},
+  {n:"BLIX MARBLE RUN",c:"Games & Toys",p:800,i:"images/39.jpg"},
+  {n:"BIG BUILDING BAG",c:"Games & Toys",p:800,i:"images/40.jpg"},
+  {n:"BUILDING BLOCK PLAYSET",c:"Games & Toys",p:700,i:"images/41.jpg"},
+  {n:"WOOD INTELLIGENCE",c:"Games & Toys",p:170,i:"images/42.jpg"},
+  {n:"GLUE GUN WITH 2 STICKS",c:"Other Products",p:370,i:""},
+  {n:"KAWAII BAGS",c:"Other Products",p:1100,i:"images/44.jpg"},
+  {n:"BUILDING BLOCKS",c:"Games & Toys",p:600,i:"images/45.jpg"},
+  {n:"ROLE AGAIN SLIDE TRACK",c:"Games & Toys",p:1500,i:"images/46.jpg"},
+  {n:"ABERO PUZZLE TOYS RATTLE",c:"Games & Toys",p:1300,i:"images/47.jpg"},
+  {n:"SOFT BLOX",c:"Games & Toys",p:1000,i:"images/48.jpg"},
+  {n:"BUILDING BLOCKS KITCHEN",c:"Games & Toys",p:740,i:"images/49.jpg"},
+  {n:"CLICK 4 BOX",c:"Kitchen Accessories",p:90,i:"images/50.jpg"},
+  {n:"DANCING SUNFLOWER TOY",c:"Games & Toys",p:420,i:"images/51.jpg"},
+  {n:"36 PARTITION",c:"Kitchen Accessories",p:270,i:"images/52.jpg"},
+  {n:"CLICK 12 BOX",c:"Kitchen Accessories",p:110,i:"images/53.jpg"},
+  {n:"CLICK 6 BOX",c:"Kitchen Accessories",p:110,i:"images/54.jpg"},
+  {n:"CHOPPING PAD - L SHAPE",c:"Games & Toys",p:450,i:"images/55.jpg"},
+  {n:"PUSH CHOPPER 1L",c:"Kitchen Accessories",p:340,i:"images/56.jpg"},
+  {n:"45X125CM ANTI SLIP MAT",c:"Home Accessories",p:150,i:""},
+  {n:"45X300CM ANTI SLIP MAT",c:"Home Accessories",p:230,i:""},
+  {n:"45X500CM ANTI SLIP MAT",c:"Home Accessories",p:330,i:""},
+  {n:"KITCHEN MAT SIZE (55X140CM)+ 2(SIZE 38X58)",c:"Kitchen Accessories",p:1400,i:""},
+  {n:"KITCHEN COLORFULL MAT SIZE (55X140)+ 2 (SIZE 38X58)",c:"Kitchen Accessories",p:760,i:""},
+  {n:"GARBAGE BAG GREEN COLOUR (MEDIUM)",c:"Other Products",p:60,i:"images/62.jpg"},
+  {n:"GARBAGE BAG GREEN COLOUR (LARGE)",c:"Other Products",p:70,i:"images/63.jpg"},
+  {n:"GARBAGE BAG BLUE COLOUR (MEDIUM)",c:"Other Products",p:60,i:""},
+  {n:"GARBAGE BAG BLUE COLOUR (LARGE)",c:"Other Products",p:70,i:""},
+  {n:"GARBAGE BAG BLACK COLOUR (SMALL)",c:"Other Products",p:50,i:""},
+  {n:"GARBAGE BAG BLACK COLOUR (MEDIUM)",c:"Other Products",p:65,i:""},
+  {n:"GARBAGE BAG BLACK COLOUR (LARGE)",c:"Other Products",p:80,i:""},
+  {n:"MICROFIBER CLOTH (280GSM)",c:"Games & Toys",p:40,i:""},
+  {n:"MICROFIBER CLOTH (600GSM)",c:"Games & Toys",p:100,i:""},
+  {n:"VACCUM BAG",c:"Other Products",p:550,i:""},
+  {n:"OIL BOTTLE",c:"Kitchen Accessories",p:350,i:""},
+  {n:"PAIR OF SCRUB GLOVES",c:"Games & Toys",p:160,i:""},
+  {n:"TABLE MAT",c:"Home Accessories",p:280,i:""},
+  {n:"USB STUDY LAMP SMALL",c:"Games & Toys",p:430,i:""},
+  {n:"USB STUDY LAMP BIG",c:"Games & Toys",p:430,i:""},
+  {n:"SS STRAINER BASKET BIG",c:"Games & Toys",p:300,i:""},
+  {n:"WASH BAG ( 3 PCS SET )",c:"Other Products",p:350,i:""},
+  {n:"MIRROR STICKER",c:"Other Products",p:170,i:""},
+  {n:"VD ORGANISER",c:"Home Accessories",p:360,i:"images/80.jpg"},
+  {n:"VD TRAY",c:"Games & Toys",p:360,i:""},
+  {n:"VD DRAWER ORGANISER",c:"Home Accessories",p:320,i:""},
+  {n:"STICKER ROLLER VELCRO",c:"Other Products",p:160,i:""},
+  {n:"TOILET SEAT COVER",c:"Games & Toys",p:160,i:"images/84.jpg"},
+  {n:"METAL CLOTH ROPE 10M",c:"Games & Toys",p:110,i:""},
+  {n:"METAL CLOTH ROPE 20M",c:"Games & Toys",p:170,i:""},
+  {n:"WALL MOUNTED TOOTH BRUSH HOLDER",c:"Home Accessories",p:190,i:""},
+  {n:"TABLE MAT 3PC SET 20*20",c:"Home Accessories",p:300,i:""},
+  {n:"TABLE MAT 3PC SET 18*18",c:"Home Accessories",p:230,i:""},
+  {n:"TOWEL RING",c:"Games & Toys",p:350,i:""},
+  {n:"METAL DISH WASH SCRUBBER",c:"Games & Toys",p:10,i:""},
+  {n:"SOAP BOX DISH SINGLE",c:"Games & Toys",p:150,i:""},
+  {n:"MICRO FIBER CLEANING FAN BRUSH/DUSTER",c:"Home Accessories",p:260,i:""},
+  {n:"BATHROOM SUCTION HOLDER RACK",c:"Home Accessories",p:450,i:""},
+  {n:"WALL MOUNTED SOAP BOX DISH",c:"Home Accessories",p:239,i:""},
+  {n:"2 IN 1 GLASS CLEANING WIPER MOP STICK",c:"Home Accessories",p:350,i:""},
+  {n:"WIPER HEIGHT ADJUSTABLE",c:"Home Accessories",p:480,i:""},
+  {n:"BDO STORAGE BOX SMALL",c:"Kitchen Accessories",p:180,i:""},
+  {n:"BDO STORAGE BOX MEDIUM",c:"Kitchen Accessories",p:220,i:""},
+  {n:"BDO STORAGE BOX LARGE",c:"Kitchen Accessories",p:350,i:""},
+  {n:"GLOVES 3 PAIR",c:"Games & Toys",p:190,i:""},
+  {n:"KITCHEN WALL STICKER",c:"Kitchen Accessories",p:170,i:""},
+  {n:"TAP FILTER SHOWER",c:"Games & Toys",p:200,i:""},
+  {n:"PILL/TABLET BOX SINGLE",c:"Games & Toys",p:100,i:""},
+  {n:"PILL/TABLET BOX 2 BOX DAY AND NIGHT",c:"Games & Toys",p:140,i:""},
+  {n:"PILL/TABLET BOX 3 MORN,NOON,NIGHT",c:"Games & Toys",p:180,i:""},
+  {n:"USB BBQ LIGHTER",c:"Games & Toys",p:220,i:""},
+  {n:"WOODEN PEELERS",c:"Games & Toys",p:250,i:""},
+  {n:"SPECIAL STEEL PEALERS",c:"Games & Toys",p:340,i:""},
+  {n:"CORNER PAD PLASTIC",c:"Games & Toys",p:190,i:""},
+  {n:"CHILD SAFETY LOCK LARGE",c:"Games & Toys",p:220,i:""},
+  {n:"CHILD SAFETY LOCK MEDIUM",c:"Games & Toys",p:200,i:""},
+  {n:"CHILD SAFETY LOCK SMALL",c:"Games & Toys",p:160,i:""},
+  {n:"TOILET HOLDER CUP",c:"Home Accessories",p:380,i:""},
+  {n:"FLOWER WALL HOOK",c:"Home Accessories",p:10,i:""},
+  {n:"DEXO CLEANING BRUSH",c:"Home Accessories",p:700,i:""},
+  {n:"SOAP CORNER HOLDER",c:"Home Accessories",p:260,i:""},
+  {n:"SOAP DISH DOUBLE HOLDER",c:"Home Accessories",p:300,i:""},
+  {n:"STATIONERY SET",c:"Games & Toys",p:1100,i:""},
+  {n:"BOTTLE BRUSH",c:"Kitchen Accessories",p:180,i:"images/120.jpg"},
+  {n:"SILICON B'DAY MAT",c:"Home Accessories",p:160,i:""},
+  {n:"SHOGOLE CUP BRUSH (SMALL)",c:"Games & Toys",p:200,i:""},
+  {n:"SHOGOLE CUP BRUSH (LARGE)",c:"Games & Toys",p:250,i:""},
+  {n:"UNIVERSAL SCREW TAPE - HOOK",c:"Home Accessories",p:150,i:""},
+  {n:"CONA SHARE MULTIPLUG",c:"Games & Toys",p:320,i:""},
+  {n:"CONA HUGO 3 PIN MULTIPLUG",c:"Games & Toys",p:110,i:""},
+  {n:"RIO DUO DING DONG BELL",c:"Games & Toys",p:200,i:""},
+  {n:"STEEL TAPE 5X19MM",c:"Games & Toys",p:260,i:""},
+  {n:"5 AMP SAFETY COVER",c:"Games & Toys",p:6,i:""},
+  {n:"DIGITAL MULTIMETER",c:"Games & Toys",p:580,i:""},
+  {n:"VIVA 4 SOCKETS + 4 SWITCHES BOX",c:"Games & Toys",p:750,i:""},
+  {n:"SHOE BAG",c:"Other Products",p:50,i:""},
+  {n:"MOP HOLDER 4 HOLDER",c:"Home Accessories",p:430,i:""},
+  {n:"MOP HOLDER 2 HOLDER",c:"Home Accessories",p:350,i:""},
+  {n:"NANO TAPE SIZE T2MMXW30MMXL3M",c:"Games & Toys",p:230,i:""},
+  {n:"NANO TAPE SIZE T2MMXW50MMXL3M",c:"Games & Toys",p:250,i:""},
+  {n:"ANTI VIBRATION PADS - WASHING MACHINE",c:"Games & Toys",p:270,i:"images/137.jpg"},
+  {n:"AIR FRYER BASKET BIG SIZE",c:"Home Accessories",p:230,i:""},
+  {n:"EYE MASK NORMAL",c:"Games & Toys",p:130,i:""},
+  {n:"EYE MASK GEL",c:"Games & Toys",p:180,i:""},
+  {n:"SINK WATER FILTER 115M SQUARE PACK OF 2",c:"Games & Toys",p:140,i:""},
+  {n:"SINK WATER FILTER 115M ROUND",c:"Games & Toys",p:130,i:""},
+  {n:"SINK WATER 90MM FILTER SMALL",c:"Games & Toys",p:100,i:""},
+  {n:"SINK WATER FILTER 72MM",c:"Games & Toys",p:80,i:""},
+  {n:"VOCEN CITRUS JUICER",c:"Games & Toys",p:190,i:""},
+  {n:"BDO SOAP BOX 1",c:"Games & Toys",p:150,i:""},
+  {n:"BDO SOAP BOX 2 - TRANSPARENT",c:"Games & Toys",p:180,i:""},
+  {n:"WALL MOUNTED SOAP DISH",c:"Home Accessories",p:280,i:""},
+  {n:"VOCEN 12 ICE CUBES TRAY",c:"Games & Toys",p:230,i:""},
+  {n:"ICE CUBES PLASTIC",c:"Games & Toys",p:280,i:""},
+  {n:"ICE CUBES BOX SMALL SIZE",c:"Games & Toys",p:230,i:""},
+  {n:"NANO TAPE LOOSE PACK",c:"Games & Toys",p:150,i:""},
+  {n:"NANO TAPE 1.0MM 2X100CM",c:"Games & Toys",p:230,i:""},
+  {n:"CAR DUSTER",c:"Games & Toys",p:340,i:""},
+  {n:"WEIGHT KITCHEN SCALE",c:"Kitchen Accessories",p:260,i:""},
+  {n:"HOOP AND LOOP WELCRO 2CMX18CM",c:"Games & Toys",p:150,i:""},
+  {n:"DEER BOX STORAGE",c:"Kitchen Accessories",p:430,i:""},
+  {n:"PLASTIC JAR WITH LID",c:"Kitchen Accessories",p:230,i:""},
+  {n:"APPLE CUTTER",c:"Kitchen Accessories",p:250,i:""},
+  {n:"PORTABLE ELECTRONIC SCALE",c:"Games & Toys",p:280,i:""},
+  {n:"SINK WATER PROTECTOR",c:"Games & Toys",p:200,i:""},
+  {n:"12KG-WALL HOOKS HANGER TRANSPARENT",c:"Home Accessories",p:220,i:""},
+  {n:"CARPET CORNER CLEANING BRUSH - SANDAL & BROWN",c:"Games & Toys",p:250,i:""},
+  {n:"PEEL KNIFE",c:"Kitchen Accessories",p:120,i:""},
+  {n:"GARDENING SPRAY",c:"Games & Toys",p:260,i:""},
+  {n:"KNIFE SHARPENER",c:"Kitchen Accessories",p:120,i:""},
+  {n:"SINK BRUSH SMALL",c:"Games & Toys",p:120,i:""},
+  {n:"TOILET BRUSH PLASTIC HANDLE",c:"Games & Toys",p:220,i:""},
+  {n:"TOILET BRUSH WOODEN HANDLE",c:"Games & Toys",p:250,i:""},
+  {n:"GAP CLEANING BRUSH (2 PCS)",c:"Home Accessories",p:80,i:""},
+  {n:"CLEANING GLOVES 16X23CM",c:"Home Accessories",p:150,i:""},
+  {n:"2 IN 1 SINK BRUSH PLASTIC FLAT",c:"Games & Toys",p:160,i:""},
+  {n:"BOTTLE BRUSH LONG HANDLE",c:"Kitchen Accessories",p:180,i:""},
+  {n:"BOTTLE BRUSH SMALL HANDLE",c:"Kitchen Accessories",p:150,i:""},
+  {n:"TOILET CLEANER CUP BRUSH",c:"Home Accessories",p:241,i:""},
+  {n:"GLASS WIPER",c:"Home Accessories",p:220,i:"images/176.jpg"},
+  {n:"GLASS BOTTLE",c:"Kitchen Accessories",p:250,i:""},
+  {n:"S.S. BASKET SMALL",c:"Home Accessories",p:320,i:""},
+  {n:"CHOPPING BOARD NORMAL",c:"Kitchen Accessories",p:410,i:""},
+  {n:"4+1 VIVA SOCKET",c:"Games & Toys",p:550,i:""},
+  {n:"NEW STAR DING DONG BELL",c:"Games & Toys",p:200,i:"images/181.jpg"},
+  {n:"SS STRAINER BASKET SMALL",c:"Games & Toys",p:250,i:""},
+  {n:"ANTI VIBRATION PADS ADJUSTABLE",c:"Games & Toys",p:280,i:""},
+  {n:"METAL CLOTH ROPE 30M",c:"Games & Toys",p:320,i:""},
+  {n:"PILL BOX 4",c:"Games & Toys",p:190,i:""},
+  {n:"CORNER PAD RUBBER",c:"Games & Toys",p:160,i:""},
+  {n:"FRIDGE SIDE DOOR STORAGE BOXES (SET OF 6)",c:"Kitchen Accessories",p:180,i:""},
+  {n:"3 LAYER - 18 GRID JEWELRY BOX",c:"Games & Toys",p:220,i:""},
+  {n:"5 COMPARTMENT DRAWER ORGANISER (SET OF 4)",c:"Home Accessories",p:210,i:""},
+  {n:"TOOTH BRUSH CASE",c:"Games & Toys",p:100,i:""},
+  {n:"S.S. BASKET BIG",c:"Home Accessories",p:380,i:""},
+  {n:"SINK WATER 115MM ROUND WITH SPORES",c:"Games & Toys",p:130,i:""},
+  {n:"SINK WATER 90MM FILTER SMALL",c:"Games & Toys",p:100,i:""},
+  {n:"GAP CLEANING BRUSH 3PCS",c:"Home Accessories",p:130,i:""},
+  {n:"SINK WATER FILTER 72MM SMALL",c:"Games & Toys",p:80,i:""},
+  {n:"EXERCISE BELT",c:"Games & Toys",p:250,i:""},
+  {n:"LAPTOP STAND",c:"Home Accessories",p:360,i:""},
+  {n:"BLIND SPOT MIRROR",c:"Games & Toys",p:130,i:"images/198.jpg"},
+  {n:"BABY SAFETY SOCKET SMALL",c:"Games & Toys",p:10,i:""},
+  {n:"BABY SAFETY SOCKET BIG",c:"Games & Toys",p:15,i:""},
+  {n:"NICE DAY HANGER",c:"Home Accessories",p:230,i:""},
+  {n:"WIPER + BRUSH 2 IN 1",c:"Home Accessories",p:160,i:""},
+  {n:"GLUE STICK",c:"Games & Toys",p:10,i:""},
+  {n:"MULTIFICENCE",c:"Games & Toys",p:990,i:""},
+  {n:"PLUG HOLDER HOOK",c:"Home Accessories",p:null,i:""},
+  {n:"ROUND WALL HOOK",c:"Home Accessories",p:null,i:""},
+  {n:"GOLDEN WALL HOOK",c:"Home Accessories",p:null,i:""},
+  {n:"TRANSPARENT STORAGE BASKET",c:"Kitchen Accessories",p:null,i:""},
+  {n:"TRANSPARENT STORAGE BASKET WITH LID",c:"Kitchen Accessories",p:null,i:""},
+  {n:"REMOTE HOLDER",c:"Home Accessories",p:null,i:""},
+  {n:"LEATHER COSMETIC BAG",c:"Other Products",p:null,i:""},
+  {n:"SNEAKER BOX",c:"Games & Toys",p:null,i:""},
+  {n:"2 IN 1 DEHYDRATED MOP",c:"Home Accessories",p:null,i:""},
+  {n:"TRIANGLE MOP",c:"Home Accessories",p:null,i:""},
+  {n:"MICRO FIBER CLEANING CLOTH",c:"Home Accessories",p:null,i:""},
+  {n:"BABY SAFETY EDGE GUARDS",c:"Games & Toys",p:null,i:""},
+  {n:"DRAWER COSMETIC ORGANIZER",c:"Home Accessories",p:null,i:""},
+  {n:"APPLE SHAPE MESH FRUIT BASKET",c:"Games & Toys",p:null,i:""},
+  {n:"DOUBLE LAYER ROTATING TRAY",c:"Games & Toys",p:null,i:""},
+  {n:"HONEYCOMB ICE TRAY",c:"Games & Toys",p:null,i:""},
+  {n:"KNIFE - SET OF 3",c:"Kitchen Accessories",p:null,i:""},
+  {n:"FIDGET KEYCHAIN",c:"Games & Toys",p:null,i:""},
+  {n:"VACCUM INSULATED WATER BOTTLE",c:"Kitchen Accessories",p:null,i:""},
+  {n:"BOOK WRAP",c:"Games & Toys",p:null,i:""},
+  {n:"FLOWER TEA LIGHT CANDLE",c:"Games & Toys",p:null,i:""},
+  {n:"SILICON ICE FACE BOWL",c:"Games & Toys",p:null,i:""},
+  {n:"XYLOPHONE",c:"Games & Toys",p:null,i:""},
+  {n:"CLASSICAL MOTO",c:"Games & Toys",p:null,i:""},
+  {n:"KAROAKE SPEAKER",c:"Games & Toys",p:null,i:""},
+  {n:"STICK GAME",c:"Games & Toys",p:null,i:""},
+  {n:"GAMING CONSOLE",c:"Games & Toys",p:null,i:""},
+  {n:"GEAR TRAIN",c:"Games & Toys",p:null,i:""},
+  {n:"VROOM SCOOTER",c:"Games & Toys",p:null,i:""},
+  {n:"CUBE MAZE",c:"Games & Toys",p:null,i:""},
+  {n:"MULTI COLOUR BABY SCOOTER",c:"Other Products",p:null,i:""},
+  {n:"RED TRICYCLE",c:"Games & Toys",p:null,i:""},
+  {n:"CYCLE 2 IN 1",c:"Games & Toys",p:null,i:""},
+  {n:"JCB SMALL",c:"Games & Toys",p:null,i:""},
+  {n:"CARTOON TRAIN",c:"Games & Toys",p:null,i:""},
+  {n:"AUTO",c:"Games & Toys",p:null,i:""},
+  {n:"DIECAST TOYS",c:"Games & Toys",p:null,i:""},
+  {n:"JEEP",c:"Games & Toys",p:null,i:""},
+  {n:"CRICKET KIT",c:"Games & Toys",p:null,i:""},
+  {n:"DIECAST ALLOY F1",c:"Games & Toys",p:null,i:""},
+  {n:"DIECAST BIKE WITH HELMET",c:"Games & Toys",p:null,i:""},
+  {n:"ALLOY CAR",c:"Games & Toys",p:null,i:""},
+  {n:"RC FLYING WHEEL",c:"Games & Toys",p:null,i:""},
+  {n:"AIR CRAFT",c:"Games & Toys",p:null,i:""},
+  {n:"BIG WHEEL TRAIN",c:"Games & Toys",p:null,i:""},
+  {n:"DIY ARMY",c:"Games & Toys",p:null,i:""},
+  {n:"LJX MODEL CAR",c:"Games & Toys",p:null,i:""},
+  {n:"CONSTRUCTION TRUCK",c:"Games & Toys",p:null,i:""},
+  {n:"BLIX BLOCKS",c:"Games & Toys",p:null,i:""},
+  {n:"CUTE DUCK",c:"Games & Toys",p:null,i:""},
+  {n:"SPORT RACUNG CAR",c:"Games & Toys",p:null,i:""},
+  {n:"CUTE CRAB",c:"Games & Toys",p:null,i:""},
+  {n:"CITIES TRACK",c:"Home Accessories",p:null,i:""},
+  {n:"BABY WATER BOTTLE",c:"Kitchen Accessories",p:null,i:""},
+  {n:"THUNDER STRIKE GUN",c:"Games & Toys",p:null,i:""},
+  {n:"THAR ROXX",c:"Games & Toys",p:null,i:""},
+  {n:"CUTE KEYCHAIN",c:"Games & Toys",p:null,i:""}
+];
+
+const wa=(m)=>`https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(m)}`;
+const inr=(n)=>"₹"+Number(n).toLocaleString("en-IN");
+document.getElementById("waHead").href = wa(`Hi ${CONFIG.shopName} 👋, I'd like to know more about your products.`);
+document.getElementById("waHero").href = wa(`Hi ${CONFIG.shopName} 👋, I'm browsing your store — can you help me?`);
+document.getElementById("waBulk").href = wa(`Hi ${CONFIG.shopName} 👋, I have a bulk / custom order. Here's my list:\n\n`);
+document.getElementById("footWa").href = wa(`Hi ${CONFIG.shopName} 👋`);
+document.getElementById("fab").href    = wa(`Hi ${CONFIG.shopName} 👋`);
+document.getElementById("footAddr").textContent = CONFIG.address;
+const fp=document.getElementById("footPhone"); fp.textContent=CONFIG.phone; fp.href="tel:"+CONFIG.phone.replace(/\s/g,"");
+const fe=document.getElementById("footEmail"); if(CONFIG.email){fe.textContent=CONFIG.email;fe.href="mailto:"+CONFIG.email;}else{fe.style.display="none";}
+document.getElementById("footHours").textContent=CONFIG.hours;
+document.getElementById("footMap").href=CONFIG.mapLink;
+const insta=document.getElementById("footInsta"); if(CONFIG.instagram) insta.href=CONFIG.instagram; else insta.style.display="none";
+document.getElementById("year").textContent=new Date().getFullYear();
+
+const ORDER=["Games & Toys","Home Accessories","Kitchen Accessories","Other Products"];
+const present=ORDER.filter(c=>PRODUCTS.some(p=>p.c===c));
+const cats=["All",...present];
+let activeCat="All", query="", page=1;
+const PAGE=24;
+const grid=document.getElementById("grid");
+const filtersEl=document.getElementById("filters");
+const countPill=document.getElementById("countPill");
+const pager=document.getElementById("pager");
+const catSection=document.getElementById("catalogue");
+
+filtersEl.innerHTML=cats.map((c,i)=>`<button class="chip" aria-pressed="${i===0}" data-cat="${c}">${c}</button>`).join("");
+filtersEl.addEventListener("click",e=>{const b=e.target.closest(".chip");if(b)setCat(b.dataset.cat);});
+function setCat(c){activeCat=c;[...filtersEl.children].forEach(ch=>ch.setAttribute("aria-pressed",ch.dataset.cat===c));page=1;render();}
+document.querySelectorAll(".hcat").forEach(t=>t.addEventListener("click",()=>{setCat(t.dataset.jump);catSection.scrollIntoView({behavior:"smooth"});}));
+const sTop=document.getElementById("searchTop"), sMain=document.getElementById("searchMain");
+function jumpToCatalogue(){const r=catSection.getBoundingClientRect();if(r.top>90)catSection.scrollIntoView({behavior:"smooth"});}
+function onSearch(v,other,jump){query=v.toLowerCase().trim();if(other.value!==v)other.value=v;page=1;render();if(jump&&query)jumpToCatalogue();}
+sTop.addEventListener("input",e=>onSearch(e.target.value,sMain,true));
+sTop.addEventListener("keydown",e=>{if(e.key==="Enter")jumpToCatalogue();});
+sMain.addEventListener("input",e=>onSearch(e.target.value,sTop,false));
+
+function filtered(){return PRODUCTS.filter(p=>{const c=activeCat==="All"||p.c===activeCat;const q=!query||p.n.toLowerCase().includes(query);return c&&q;});}
+function cardHTML(p,idx){
+  const hasP=typeof p.p==="number";
+  const media=p.i?`<img src="${p.i}" alt="${p.n}" loading="lazy">`:`<div class="ph"><span>${p.n.charAt(0)}</span></div>`;
+  const price=hasP?`<span class="tag"><span class="now">${inr(p.p)}</span></span>`:`<span class="tag ask"><span class="now">Tap to ask price</span></span>`;
+  const ptxt=hasP?` (${inr(p.p)})`:"";
+  const msg=`Hi ${CONFIG.shopName} 👋, I'm interested in *${p.n}*${ptxt}. Is it available?`;
+  const title=p.n.charAt(0)+p.n.slice(1).toLowerCase();
+  return `<article class="card" style="animation-delay:${Math.min(idx*28,300)}ms">
+    <div class="card-media">${media}</div>
+    <div class="card-body"><span class="card-cat">${p.c}</span><h3>${title}</h3>
+      <div class="pricetag">${price}</div>
+      <a class="btn btn-wa" href="${wa(msg)}" target="_blank" rel="noopener">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+        Enquire on WhatsApp
+      </a></div></article>`;
+}
+function pagerBtn(label,p,opts={}){
+  const cur=opts.current?'aria-current="true"':"";
+  const dis=opts.disabled?"disabled":"";
+  const ell=opts.ellipsis?"ellipsis":"";
+  return `<button class="pg ${ell}" data-page="${p}" ${cur} ${dis}>${label}</button>`;
+}
+function buildPager(total){
+  if(total<=1){pager.innerHTML="";return;}
+  let nums=[];
+  const win=1;
+  for(let i=1;i<=total;i++){
+    if(i===1||i===total||(i>=page-win&&i<=page+win)) nums.push(i);
+    else if(nums[nums.length-1]!=="…") nums.push("…");
+  }
+  let html=pagerBtn("‹ Prev",page-1,{disabled:page===1});
+  html+=nums.map(n=>n==="…"?pagerBtn("…",0,{ellipsis:true,disabled:true}):pagerBtn(n,n,{current:n===page})).join("");
+  html+=pagerBtn("Next ›",page+1,{disabled:page===total});
+  pager.innerHTML=html;
+}
+pager.addEventListener("click",e=>{
+  const b=e.target.closest(".pg"); if(!b||b.disabled||b.classList.contains("ellipsis"))return;
+  const p=+b.dataset.page; if(p<1)return;
+  page=p; render(); catSection.scrollIntoView({behavior:"smooth"});
+});
+function render(){
+  const list=filtered();
+  const total=Math.max(1,Math.ceil(list.length/PAGE));
+  if(page>total) page=total;
+  const start=(page-1)*PAGE;
+  const slice=list.slice(start,start+PAGE);
+  if(!list.length){
+    grid.innerHTML=`<div class="empty"><h3>Nothing matches that yet</h3><p>Try another department, or just message us — we stock more than what's listed here.</p></div>`;
+    countPill.textContent="0 products"; pager.innerHTML=""; return;
+  }
+  grid.innerHTML=slice.map((p,i)=>cardHTML(p,i)).join("");
+  countPill.textContent=`Showing ${start+1}–${start+slice.length} of ${list.length} products`;
+  buildPager(total);
+}
+render();
+
+// scroll reveal
+const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}});},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
